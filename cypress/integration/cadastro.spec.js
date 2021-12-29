@@ -18,7 +18,8 @@ describe('Cadastro', ()=>{
                 complemento:'Ap 201',
                 bairro: 'Itaim Bibi',
                 cidade_uf: 'São Paulo/SP'
-            }
+            },
+            metodo_entrega: 'Moto'
 
         }
         cy.get('input[name="name"]').type(entregador.nome)
@@ -37,6 +38,6 @@ describe('Cadastro', ()=>{
         cy.get('input[name="district"]').should('have.value',entregador.endereco.bairro)
         cy.get('input[name="city-uf"]').should('have.value',entregador.endereco.cidade_uf)
         
-        
+        cy.contains('.delivery-method li', entregador.metodo_entrega).click()
     })
 })
