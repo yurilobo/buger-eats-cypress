@@ -13,7 +13,7 @@ describe('Cadastro', ()=>{
             whatsapp:' 1199999999',
             endereco:{
                 cep:'04534011',
-                rua: 'Rua Joaquim Floreano',
+                rua: 'Rua Joaquim Floriano',
                 numero:'1000',
                 complemento:'Ap 201',
                 bairro: 'Itaim Bibi',
@@ -31,6 +31,12 @@ describe('Cadastro', ()=>{
 
         cy.get('input[name="address-number"]').type(entregador.endereco.numero)
         cy.get('input[name="address-details"]').type(entregador.endereco.complemento)
+        
+
+        cy.get('input[name="address"]').should('have.value',entregador.endereco.rua)
+        cy.get('input[name="district"]').should('have.value',entregador.endereco.bairro)
+        cy.get('input[name="city-uf"]').should('have.value',entregador.endereco.cidade_uf)
+        
         
     })
 })
