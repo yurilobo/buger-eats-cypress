@@ -19,9 +19,11 @@ describe('Cadastro', ()=>{
                 bairro: 'Itaim Bibi',
                 cidade_uf: 'São Paulo/SP'
             },
-            metodo_entrega: 'Moto'
+            metodo_entrega: 'Moto',
+            cnh: 'cnh-digital.jpg'
 
         }
+        //para fazer upload de imagem "npm install cypress-file-upload --save-dev"
         cy.get('input[name="name"]').type(entregador.nome)
         cy.get('input[name="cpf"]').type(entregador.cpf)
         cy.get('input[name="email"]').type(entregador.email)
@@ -39,5 +41,10 @@ describe('Cadastro', ()=>{
         cy.get('input[name="city-uf"]').should('have.value',entregador.endereco.cidade_uf)
         
         cy.contains('.delivery-method li', entregador.metodo_entrega).click()
+
+        //imagem 
+        //Observação sobre os localizadores[name^="city-uf"] quando usamos ^ -trazemos o que começa com o localizador usado
+        //quando usamos $ o que termina e quando usamos * com todos.
+        cy.get('input[accept^="image"]').attachFile('/images/'+entregador.cnh)
     })
 })
