@@ -8,7 +8,7 @@ describe('Cadastro', ()=>{
 
         var entregador ={ 
             nome: "Yuri Anderson",
-            cpf: "111.222.333.65",
+            cpf: "08709260048",
             email:'yuri@teste.com',
             whatsapp:' 1199999999',
             endereco:{
@@ -46,5 +46,15 @@ describe('Cadastro', ()=>{
         //Observação sobre os localizadores[name^="city-uf"] quando usamos ^ -trazemos o que começa com o localizador usado
         //quando usamos $ o que termina e quando usamos * com todos.
         cy.get('input[accept^="image"]').attachFile('/images/'+entregador.cnh)
+
+      cy.get('form button[type="submit"]').click()
+        
+
+        const expectedMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.'
+        // cy.get('div[class=swal2-html-container]')
+            
+       cy.get('.swal2-container .swal2-html-container')
+        .should('have.text', expectedMessage)
     })
+
 })
