@@ -40,4 +40,4 @@ class SignupPage{
         cy.get('.alert-error').should('have.text', expectedMessage)
     }
 }
-export default SignupPage
+export default new SignupPage
