@@ -4,66 +4,35 @@ import  signup from '../pages/SignupPages'
 
 describe('Cadastro', ()=>{
 
+    beforeEach(function(){
+        cy.fixture('deliver').then((d)=>{
+            this.deliver=d
+        })
+    })
     
-    
-
-    it('Usuário deve se tornar um entregador', ()=>{
+    it('Usuário deve se tornar um entregador', function(){
         
-
-        var deliver ={ 
-            name: "Yuri Anderson",
-            cpf: "08709260048",
-            email:'yuri@teste.com',
-            whatsapp:' 1199999999',
-            address:{
-                postalcode:'04534011',
-                street: 'Rua Joaquim Floriano',
-                number:'1000',
-                details:'Ap 201',
-                district: 'Itaim Bibi',
-                city_state: 'São Paulo/SP'
-            },
-            deliver_method: 'Moto',
-            cnh: 'cnh-digital.jpg'
-
-        }
-        
+       
 
         signup.go()
-        signup.fillForm(deliver)
+        signup.fillForm(this.deliver.signup)
         signup.submit()
 
         const expectedMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.'
         signup.modalContentShouldBe(expectedMessage)
     })
-    it('CPF invalido', ()=>{
+    it('CPF invalido', function(){
         cy.viewport(1440,900)
         cy.visit('https://buger-eats.vercel.app')
 
         cy.get('a[href="/deliver"]').click()
         cy.get('#page-deliver form h1').should('have.text','Cadastre-se para  fazer entregas')
 
-        var deliver ={ 
-            name: "Yuri Anderson",
-            cpf: "087092600aa",
-            email:'yuri@teste.com',
-            whatsapp:' 1199999999',
-            address:{
-                postalcode:'04534011',
-                street: 'Rua Joaquim Floriano',
-                number:'1000',
-                details:'Ap 201',
-                district: 'Itaim Bibi',
-                city_state: 'São Paulo/SP'
-            },
-            deliver_method: 'Moto',
-            cnh: 'cnh-digital.jpg'
-        }
-            
+           
         
 
         signup.go()
-        signup.fillForm(deliver)
+        signup.fillForm(this.deliver.cpf_inv)
         signup.submit()
        
        signup.alertMessageShouldBe('Oops! CPF inválido')
