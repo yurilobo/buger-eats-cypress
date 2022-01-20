@@ -41,7 +41,7 @@ describe('Singup', () => {
         signup.fillForm(deliver)
         signup.submit()
 
-        signup.alertMessageShouldBe('Oops! Email com formato inválidu.')
+        signup.alertMessageShouldBe('Oops! Email com formato inválido.')
     })
     context('Required fields', function () {
         const messages = [
