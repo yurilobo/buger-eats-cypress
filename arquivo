@@ -3,3 +3,6 @@ npx cyprees open
 npm test
 npm install gerador-validador-cpf --save-dev
 npx cypress run
+npx cypress run -b chrome
+npx cypress run -b edge
+npx cypress run -b firefox
