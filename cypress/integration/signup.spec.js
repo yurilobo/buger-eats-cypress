@@ -1,5 +1,6 @@
 import  signup from '../pages/SignupPages'
 import SignupFactory from '../factories/SignupFactory'
+import SignupPages from '../pages/SignupPages'
 
 describe('Singup', ()=>{
 
@@ -9,7 +10,7 @@ describe('Singup', ()=>{
         })
     })
     */
-    it('User should be deliver', function(){
+    it.skip('User should be deliver', function(){
 
         var deliver = SignupFactory.deliver()
 
@@ -20,7 +21,7 @@ describe('Singup', ()=>{
         const expectedMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.'
         signup.modalContentShouldBe(expectedMessage)
     })
-    it('Incorrect document', function(){
+    it.skip('Incorrect document', function(){
         var deliver = SignupFactory.deliver()
         
         deliver.cpf='000000aa131'
@@ -31,7 +32,7 @@ describe('Singup', ()=>{
        
        signup.alertMessageShouldBe('Oops! CPF inválido')
     })
-    it('Incorrect email', function(){
+    it.skip('Incorrect email', function(){
         var deliver = SignupFactory.deliver()
 
         deliver.email='email.com'
@@ -42,5 +43,17 @@ describe('Singup', ()=>{
        
        signup.alertMessageShouldBe('Oops! Email com formato inválido.')
     })
+    it('Require fields', function(){
+        signup.go()
+        signup.submit()
+        signup.alertMessageShouldBe('É necessário informar o nome')
+        signup.alertMessageShouldBe('É necessário informar o CPF')
+        signup.alertMessageShouldBe('É necessário informar o email')
+        signup.alertMessageShouldBe('É necessário informar o CEP')
+        signup.alertMessageShouldBe('É necessário informar o número do endereço')
+        signup.alertMessageShouldBe('Selecione o método de entrega')
+        signup.alertMessageShouldBe('Adicione uma foto da sua CNH')
+    })
+
 
 })
