@@ -6,3 +6,4 @@ npx cypress run
 npx cypress run -b chrome
 npx cypress run -b edge
 npx cypress run -b firefox
+npx cypress run --record --key ac03873e-af73-4443-b513-4f2884891d71
